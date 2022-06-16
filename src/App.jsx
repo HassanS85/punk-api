@@ -1,20 +1,47 @@
-import beers from './data/data'; 
+import beers from "./data/data.js"; 
 import './App.scss';
 import MainContainer from "../src/container/mainContent/MainContainer";
 import NavigationBar from "../src/container/navigationBar/NavigationBar";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import list from './component/list/List';
+import FilterBeers from './component/filterBeers/FilterBeers';
+import SearchBar from './component/searchbar/SearchBar';
+
+
 
 //import {browserRouter as Router, Routes, Route} from "react-router-dom";
-import Filter from './component/filter/Filter';
-import Cards from './component/cards/Cards';
+
 
 const App = () => {
-  const [beertype, setbeertype] = useState ([]);
+  const [beers, setbeers] = useState ([]);
   const [filteredBeerType, setfilteredBeerType] = useState([]);
+
+  // useEffect(()=>{
+  //   fetch('https://api.punkapi.com/v2/beers')
+  //   .then(response => response.json())
+  //   .then(data => setbeers(data))},[])
+
+  //   useEffect(() => {
+  //     setfilteredBeerType(beers)
+  //   },[beers])
+
+const getBeers = async () => {
+  let url = 'https://api.punkapi.com/v2/beers';
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log({ data });
+  getBeers(data);
+}
+
+// useEffect(() => {
+//   //getBeers();
+//   console.log(beers);
+// }, []);
+
 
 const highAlcohol = (event) => {
   if (event.target.value) {
-    const highFilter = beers.filter(beer => beer.abv > 6);
+    const highFilter = beers.filter(beers => beers.abv > 6);
     setfilteredBeerType(highFilter);
 
   }else {
@@ -24,7 +51,7 @@ const highAlcohol = (event) => {
 
 const classicRange = (event) => {
   if (event.target.value){
-    const filteredClassicRange = beers.filter(beer => beer.first_brewed.split[1] <= 2010); 
+    const filteredClassicRange = beers.filter(beers => beers.first_brewed.split[1] <= 2010); 
     setfilteredBeerType(filteredClassicRange);
   }else {
     setfilteredBeerType(beers);
@@ -33,7 +60,7 @@ const classicRange = (event) => {
 
 const highAcidity = (event) => {
   if (event.target.value){
-  const filteredHighAcidity = beers.filter(beer => beer.ph < 4);
+  const filteredHighAcidity = beers.filter(beers => beers.ph < 4);
   setfilteredBeerType(filteredHighAcidity);
 }else {
   setfilteredBeerType(beers);
@@ -46,7 +73,7 @@ const searchThroughBeers = (event) => {
   if (event.target.value) {
     console.log("Please try again");
     const searchThroughName = 
-    beers.filter(beer => beer.name.toLowerCase().includes(event.target.value.toLowerCase()));
+    beers.filter(beers => beers.name.toLowerCase().includes(event.target.value.toLowerCase()));
     setfilteredBeerType(searchThroughName);
     console.log(searchThroughName)
   }
@@ -57,10 +84,18 @@ const searchThroughBeers = (event) => {
 
   return (
     <div className="App">
+      <NavigationBar searchFilter={(event) => searchThroughBeers(event)} filterItems={[
+        {name:'High ABV (>6.0%)', filteredAlcohol:(event) => highAlcohol(event)},
+        {name:'Classic Range', filteredAlcohol:(event) => classicRange(event) },
+        {name:'Acidic (ph < 4)', filteredAlcohol:(event) => highAcidity(event)}
+        ]}/>
             <MainContainer arr={filteredBeerType}/>
-            <Cards arr={filteredBeerType}></Cards>
+            
+            
     </div>
   );
 }
 }
 export default App;
+
+

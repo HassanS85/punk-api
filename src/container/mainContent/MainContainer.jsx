@@ -15,10 +15,7 @@ const MainContainer = (props) => {
     />
   ));
   return (
-    <div className="card-container">
-      {beersJSX}
-      MainContainer
-    </div>
+    <div className="main-container">{beersJSX}</div>
   );
 };
 
