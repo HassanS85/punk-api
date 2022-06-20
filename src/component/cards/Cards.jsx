@@ -6,7 +6,7 @@ const Cards = (props) => {
 
   return (
     <div className="card__name">
-      <img className="card__image" src={image} alt=""></img>
+      <img className="card__image" src={image} alt=""/>
       <h3>{name}</h3>
       <h4>{abv}</h4>
       <p className="card__description">{description}</p>
@@ -15,3 +15,5 @@ const Cards = (props) => {
 };
 
 export default Cards;
+
+

@@ -1,1 +1,9 @@
 
+.App {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 4fr);
+    align-content: center;
+    justify-content: center;
+  }
+
