@@ -6,6 +6,7 @@ const list = (props) => {
   
   return (
     <div className='filter__list'>{filterList}</div>
+    
   )
 }
 

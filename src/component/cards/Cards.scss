@@ -1,20 +1,20 @@
-.beer {
-    border: 2px solid #830503;
+.card__name {
+    border: 2px solid #d31313;
     margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 15px;
     width: 300px;
     &:hover {
-      background-color: #ca9333;
-      box-shadow: 4px 4px 4px #4e4d4d;
+      background-color: #eed42a;
+      box-shadow: 10px 10px 10px #000000;
     }
   
-    &__size {
-      width: 75px;
-      height: 150px;
+    &__image {
+      width: 55px;
+      height: 130px;
     }
     &__description {
-      max-height: 150px;  
-      overflow-y: scroll;
+      max-height: 100px;  
+      
     }
 }

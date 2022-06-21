@@ -6,37 +6,26 @@ import React, { useEffect, useState } from "react";
 import list from "./component/list/List";
 import filterBeers from "./component/filterBeers/FilterBeers";
 import SearchBar from "./component/searchbar/SearchBar";
+import FilterBeers from "./component/filterBeers/FilterBeers";
 
-//import {browserRouter as Router, Routes, Route} from "react-router-dom";
+
 
 const App = () => {
   const [beers, setBeers] = useState([]);
   const [filteredBeerType, setfilteredBeerType] = useState([]);
 
-  useEffect(()=>{
-    fetch('https://api.punkapi.com/v2/beers')
-    .then(response => response.json())
-    .then(data => setBeers(data))},[])
+  useEffect(() => {
+    fetch("https://api.punkapi.com/v2/beers")
+      .then((response) => response.json())
+      .then((data) => setBeers(data));
+  }, []);
 
-    useEffect(() => {
-      setfilteredBeerType(beers)
-    },[beers])
+  useEffect(() => {
+    setfilteredBeerType(beers);
+  }, [beers]);
 
-  // const getBeers = async () => {
-  //   let url = "https://api.punkapi.com/v2/beers";
-  //   const res = await fetch(url);
-  //   const data = await res.json();
-  //   console.log(data);
-  //   setBeers(data);
-  // };
-  // console.log(beers);
-  // useEffect(() => {
-  //   getBeers();
-  //   console.log(beers);
-  // }, []);
-
-  const highAlcohol = (event) => {
-    if (event.target.value) {
+  const abvFilter = (event) => {
+    if (event.target.checked) {
       const highFilter = beers.filter((beers) => beers.abv > 6);
       setfilteredBeerType(highFilter);
     } else {
@@ -44,8 +33,8 @@ const App = () => {
     }
   };
 
-  const classicRange = (event) => {
-    if (event.target.value) {
+  const classicRangeFilter = (event) => {
+    if (event.target.checked) {
       const filteredClassicRange = beers.filter(
         (beers) => beers.first_brewed.split[1] <= 2010
       );
@@ -55,8 +44,8 @@ const App = () => {
     }
   };
 
-  const highAcidity = (event) => {
-    if (event.target.value) {
+  const phFilter = (event) => {
+    if (event.target.checked) {
       const filteredHighAcidity = beers.filter((beers) => beers.ph < 4);
       setfilteredBeerType(filteredHighAcidity);
     } else {
@@ -87,19 +76,20 @@ const App = () => {
         filterItems={[
           {
             name: "High ABV (>6.0%)",
-            filteredAlcohol: (event) => highAlcohol(event),
+            filteredAlcohol: (event) => abvFilter(event),
           },
           {
             name: "Classic Range",
-            filteredAlcohol: (event) => classicRange(event),
+            filteredAlcohol: (event) => classicRangeFilter(event),
           },
           {
             name: "Acidic (ph < 4)",
-            filteredAlcohol: (event) => highAcidity(event),
+            filteredAlcohol: (event) => phFilter(event),
           },
         ]}
       />
       <MainContainer arr={filteredBeerType} />
+      <FilterBeers />
     </div>
   );
 };

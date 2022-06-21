@@ -1,7 +1,5 @@
 
-
-
-.navbar {
+.navigation__bar {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -10,9 +8,11 @@
     &__title {
       margin: 0;
       padding: 50px;
-      height: 50vh;
+      height: 10vh;
       width: 100vw;
       color: whitesmoke;
       font-size: 60px;
     }
   }
+
+  
