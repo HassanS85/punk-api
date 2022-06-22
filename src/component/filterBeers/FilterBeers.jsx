@@ -4,7 +4,7 @@ import "./FilterBeers.scss";
 const FilterBeers = ({ abvFilter, phFilter, classicRangeFilter }) => {
   return (
     <div className="filters-section">
-      <p>Filter by:</p>
+      <p>Beer Filter:</p>
       <div className="filters-list">
         <div className="filters-list__filter">
           <input onClick={abvFilter} type="checkbox" id="abv" name="abv" />

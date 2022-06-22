@@ -1,11 +1,7 @@
-import beers from "./data/data.js";
 import "./App.scss";
 import MainContainer from "./container/mainContent/MainContainer";
 import NavigationBar from "./container/navigationBar/NavigationBar";
 import React, { useEffect, useState } from "react";
-import list from "./component/list/List";
-import filterBeers from "./component/filterBeers/FilterBeers";
-import SearchBar from "./component/searchbar/SearchBar";
 import FilterBeers from "./component/filterBeers/FilterBeers";
 
 
@@ -70,6 +66,7 @@ const App = () => {
   };
 
   return (
+  
     <div className="App">
       <NavigationBar
         searchFilter={(event) => searchThroughBeers(event)}
@@ -88,8 +85,8 @@ const App = () => {
           },
         ]}
       />
-      <MainContainer arr={filteredBeerType} />
-      <FilterBeers />
+      <MainContainer arr={beers} />
+      <FilterBeers filters-section ={filteredBeerType}/>
     </div>
   );
 };
