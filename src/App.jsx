@@ -85,8 +85,8 @@ const App = () => {
           },
         ]}
       />
-      <MainContainer arr={beers} />
-      <FilterBeers filters-section ={filteredBeerType}/>
+      <MainContainer arr={filteredBeerType} />
+      <FilterBeers />
     </div>
   );
 };
